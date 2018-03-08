@@ -6,6 +6,11 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  # GET /departments/new
+  def new
+    @user = User.new
+  end
+
   def show
     @user = User.find(params[:id])
     unless current_user.admin?
@@ -17,6 +22,21 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+  end
+
+  def create
+    # admins only
+    @user = User.new(secure_params)
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update

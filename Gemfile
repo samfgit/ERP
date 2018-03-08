@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '>=2.3.1'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rake','~> 12.2.1'
 gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -9,7 +10,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '3.1.11', platforms: [:ruby, :x64_mingw, :mingw]
+# gem 'bcrypt-ruby', '3.1.0', :require => 'bcrypt'
 group :development, :test do
   gem 'byebug', platform: :mri
 end

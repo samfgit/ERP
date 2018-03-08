@@ -1,0 +1,6 @@
+<td><%= department.name %></td>
+<td><%= department.company_code %></td>
+<td><%= department.Department.name %></td>
+<td><%= link_to 'Show', department, :class => 'btn btn-primary' %></td>
+<td><%= link_to 'Edit', edit_department_path(department), :class => 'btn btn-primary' %></td>
+<td><%= link_to 'Delete Department', department, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>

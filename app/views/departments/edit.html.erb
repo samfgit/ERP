@@ -1,0 +1,12 @@
+<!-- <h1>Editing Department</h1> -->
+
+<%= render 'form', department: @department %>
+
+
+<div class="inputform">
+<h3>Delete Department</h3>
+  <%= button_to("Delete Department", department_path(@department), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger')  %>
+</div>
+
+<%= link_to 'Show', @department, :class => 'btn btn-primary' %> |
+<%= link_to 'Back', departments_path, :class => 'btn btn-info' %>
