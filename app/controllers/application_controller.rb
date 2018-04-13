@@ -9,4 +9,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
+  private
+  
+  def admin_only
+    unless current_user.admin?
+      redirect_to :back, :alert => "Access denied."
+    end
+  end
+
 end

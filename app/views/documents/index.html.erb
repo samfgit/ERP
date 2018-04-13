@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <h3>Documents</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Document Code</th>
+          <th>Title</th>
+          <th>Issue date</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @documents.each do |document| %>
+        <tr>
+          <%= render document %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= link_to 'New Document', new_document_path, :class => 'btn btn-success'  %>

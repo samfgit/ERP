@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180306130617) do
+ActiveRecord::Schema.define(version: 20180308113104) do
 
   create_table "Departments", force: :cascade do |t|
     t.string   "name"
@@ -18,6 +18,22 @@ ActiveRecord::Schema.define(version: 20180306130617) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "parent_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.integer  "department_id",             null: false
+    t.integer  "document_id_in_department", null: false
+    t.string   "document_code",             null: false
+    t.text     "title",                     null: false
+    t.text     "key_words"
+    t.text     "description"
+    t.text     "text_content"
+    t.string   "author"
+    t.integer  "user_id",                   null: false
+    t.date     "issue_date"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["department_id", "document_id_in_department"], name: "index_documents_on_department_id_and_document_id_in_department", unique: true
   end
 
   create_table "users", force: :cascade do |t|

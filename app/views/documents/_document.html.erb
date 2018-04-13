@@ -1,0 +1,6 @@
+<td><%= document.document_code %></td>
+<td><%= document.title %></td>
+<td><%= document.issue_date %></td>
+<td><%= link_to 'Show', document, :class => 'btn btn-primary' %></td>
+<td><%= link_to 'Edit', edit_document_path(document), :class => 'btn btn-primary'  %></td>
+<td><%= link_to 'Delete Document', document, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'  %></td>

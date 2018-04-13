@@ -1,0 +1,20 @@
+$("#document_document_id_in_department")
+	.find('option')
+    .remove()
+    .end()
+    .append(
+    $("<option>" , {
+        text: <%= @new_code%>,
+        value: <%= @new_code%>
+    })
+);
+$("#document_document_code")
+	.find('option')
+    .remove()
+    .end()
+    .append(
+    $("<option>" , {
+        text: '<%= @department.name%>_<%= @new_code%>',
+        value: '<%= @department.name%>_<%= @new_code%>'
+    })
+);

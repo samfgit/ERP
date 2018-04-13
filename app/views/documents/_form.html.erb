@@ -1,0 +1,96 @@
+<script type="text/javascript">
+jQuery(function($) {
+  $("#document_department_id").change(function() {
+    var status = $('select#document_department_id :selected').val();
+    if(status == "") status="1";
+    //console.log("New Status: " + status);
+    // jQuery.getJSON('/departments/'+status+'/get_new_doc_code' , function(data){
+    //   $("body").html(data.message);
+    //   $("data").find("script").each(function(){
+    //     eval($(this).text());
+    //   });
+    // })
+    $.getScript( '/departments/'+status+'/get_new_doc_code', function( data, textStatus, jqxhr ) {
+      // console.log( data ); // Data returned
+      // console.log( textStatus ); // Success
+      // console.log( jqxhr.status ); // 200
+      // console.log( "Load was performed." );
+    });
+    return false;
+  });
+})
+</script>
+
+
+<div class="inputform">
+<h3>Document</h3>
+<%= form_for(document) do |f| %>
+  <% if document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+      <ul>
+      <% document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :department_id %>
+    <%= f.select :department_id, Department.all.collect {|d| [ d.name, d.id ] },{ :include_blank => true}, class: 'form-control' %>
+  </div>
+
+  <fieldset id="document-code-auto-fill">
+    <div class="field">
+      <%= f.label :document_id_in_department %>
+      <%= f.select :document_id_in_department, {}, {}, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :document_code %>
+      <%= f.select :document_code, {}, {}, class: 'form-control' %>
+    </div>
+  </fieldset>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_area :title, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :key_words %>
+    <%= f.text_area :key_words, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :text_content %>
+    <%= f.text_area :text_content, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :author %>
+    <%= f.text_field :author, class: 'form-control' %>
+  </div>
+
+  <div class="field inactive">
+    <%= f.label "Added By" %>
+    <%= f.select :user_id, [[ current_user.name, current_user.id ]] ,{}, class: 'form-control'%>
+  </div>
+
+  <div class="field">
+    <%= f.label :issue_date %>
+    <%= f.date_field :issue_date, :value => Date.today, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Submit', :class => 'right btn btn-primary' %>
+  </div>
+<% end %>
+</div>

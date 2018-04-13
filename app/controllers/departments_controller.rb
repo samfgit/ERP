@@ -1,5 +1,7 @@
 class DepartmentsController < ApplicationController
-  before_action :set_department, only: [:show, :edit, :update, :destroy]
+  before_action :set_department, only: [:show, :edit, :update, :destroy, :get_new_doc_code]
+  before_action :authenticate_user!
+  before_action :admin_only
 
   # GET /departments
   # GET /departments.json
@@ -58,6 +60,15 @@ class DepartmentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to departments_url, notice: 'Department was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def get_new_doc_code
+    respond_to do |format|
+      @new_code = @department.new_doc_code
+      format.html { redirect_to documents_url, notice: @new_code }
+      format.js
+      # format.json { head :no_content }
     end
   end
 

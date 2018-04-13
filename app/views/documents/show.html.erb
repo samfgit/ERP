@@ -1,0 +1,52 @@
+<p>
+  <strong>Department:</strong>
+  <%= @document.department_id %>
+</p>
+
+<p>
+  <strong>Document id within department:</strong>
+  <%= @document.document_id_in_department %>
+</p>
+
+<p>
+  <strong>Document code:</strong>
+  <%= @document.document_code %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @document.title %>
+</p>
+
+<p>
+  <strong>Key words:</strong>
+  <%= @document.key_words %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @document.description %>
+</p>
+
+<p>
+  <strong>Text content:</strong>
+  <%= @document.text_content %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @document.author %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @document.user_id %>
+</p>
+
+<p>
+  <strong>Issue date:</strong>
+  <%= @document.issue_date %>
+</p>
+
+<%= link_to 'Edit', edit_document_path(@document), :class => 'btn btn-primary'  %> |
+<%= link_to 'Back', documents_path, :class => 'btn btn-info'  %>
